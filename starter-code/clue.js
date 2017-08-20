@@ -1,104 +1,65 @@
-/*
+//---- Characters ----
+function Character(firstName, lastName, colorCharacter, descr, age, image, occupation) {
+  this.firstName = firstName
+  this.lastName = lastName
+  this.colorCharacter = colorCharacter
+  this.descr = descr
+  this.age = age
+  this.image = image
+  this.occupation = occupation
+}
 
----- Characters ----
+var mrGreen = new Character('Jacob', 'Green', 'green', 'He has a lot of connections', 34, 'https://pbs.twimg.com/profile_images/506787499331428352/65jTv2uC.jpeg', 'Entrepreneur')
+var drOrchid = new Character('Doctor', 'Orchid', 'white', 'PhD in plant toxicology. Adopted daughter of Mr. Boddy', 26, 'http://www.radiotimes.com/uploads/images/Original/111967.jpg', 'Scientist')
+var profPlum = new Character('Victor', 'Plum', 'purple', 'Billionare video game designer', 22, 'https://metrouk2.files.wordpress.com/2016/07/professor-plum.jpg', 'Designer')
+var missScarlet = new Character('Kasandra', 'Scarlet', 'red', 'She is an A-list movie star with a dark past,', 31, 'https://metrouk2.files.wordpress.com/2016/07/miss-scarlett.jpg', 'Actor')
+var mrsPeacock = new Character('Eleanor', 'Peacock', 'blue', 'She is from a wealthy family and uses her status and money to earn popularity', 36, 'https://metrouk2.files.wordpress.com/2016/07/mrs-peacock.jpg', 'Socialité')
+var mrMustard = new Character('Jack', 'Mustard', 'yellow', 'He is a former football player who tries to get by on his former glory', 62, 'https://metrouk2.files.wordpress.com/2016/07/colonel-mustard.jpg', 'Retired Football player')
 
-  Mr Green
-  first name: Jacob
-  last name:  Green
-  color: green
-  description: He has a lot of connections
-  age: 45
-  image: https://pbs.twimg.com/profile_images/506787499331428352/65jTv2uC.jpeg
-  occupation: Entrepreneur
+var suspects = [mrGreen, drOrchid, profPlum, missScarlet, mrsPeacock, mrMustard]
 
-  Dr Orchid
-  first name: Doctor
-  last name: Orchid
-  color: white
-  description: PhD in plant toxicology. Adopted daughter of Mr. Boddy
-  age: 26
-  image: http://www.radiotimes.com/uploads/images/Original/111967.jpg
-  occupation: Scientist
+//---- Weapons ----
+function Weapon(name, weight) {
+  this.name = name
+  this.weight = weight
+}
 
-  Prof Plum
-  first name: Victor
-  last name: Plum
-  color: purple
-  description: Billionare video game designer
-  age: 22
-  image: https://metrouk2.files.wordpress.com/2016/07/professor-plum.jpg
-  occupation: Designer
+var rope = new Weapon('rope', 10)
+var knife = new Weapon('knife', 8)
+var candlestick = new Weapon('candlestick', 2)
+var dumbbell = new Weapon('dumbbell', 30)
+var poison = new Weapon('poison', 2)
+var axe = new Weapon('axe', 15)
+var bat = new Weapon('bat', 13)
+var trophy = new Weapon('trophy', 25)
+var pistol = new Weapon('pistol', 20)
 
-  Miss Scarlet
-  first name: Kasandra
-  last name: Scarlet
-  color: red
-  description: She is an A-list movie star with a dark past,
-  age: 31,
-  image: https://metrouk2.files.wordpress.com/2016/07/miss-scarlett.jpg,
-  occupation: Actor
+var weapons = [rope, knife, candlestick, dumbbell, poison, axe, bat, trophy, pistol]
 
- Mrs Peacock
-  first name: Eleanor
-  last name: Peacock
-  color: blue
-  description: She is from a wealthy family and uses her status and money to earn popularity
-  age: 36
-  image: https://metrouk2.files.wordpress.com/2016/07/mrs-peacock.jpg
-  occupation: Socialité
+//---- Rooms ----
+var rooms = ['Dinning Room', 'Conservatory', 'Kitchen', 'Study', 'Library',
+  'Billiard Room', 'Lounge', 'Ballroom', 'Hall', 'Spa', 'Living Room',
+  'Observatory', 'Theater', 'Guest House', 'Patio'
+]
 
- Mr Mustard
-  first name: Jack
-  last name: Mustard
-  color: yellow
-  description: He is a former football player who tries to get by on his former glory
-  age: 62
-  image: https://metrouk2.files.wordpress.com/2016/07/colonel-mustard.jpg
-  occupation: Retired Football player
-
----- Weapons ----
-
-Rope - Weight: 10
-Knife - Weight: 8
-Candlestick - Weight: 2
-Dumbbell - Weight: 30
-Poison - Weight: 2
-Axe - Weight: 15
-Bat - Weight: 13
-Trophy - Weight: 25
-Pistol - Weight: 20
-
-
----- Rooms ----
-Dinning Room
-Conservatory
-Kitchen
-Study
-Library
-Billiard Room
-Lounge
-Ballroom
-Hall
-Spa
-Living Room
-Observatory
-Theater
-Guest House
-Patio
-
-*/
-
+//---- Functions ----
 function random_selector(array) {
-
+  var randomIndex = Math.floor(Math.random() * (array.length - 1))
+  return array[randomIndex]
 }
 
 function pick_mistery() {
+  var suspect = random_selector(suspects)
+  var weapon = random_selector(weapons)
+  var room = random_selector(rooms)
 
+  var misteryEnvelope = [suspect, weapon, room]
+  return misteryEnvelope
 }
 
 function reveal_mistery(mistery) {
-
+  console.log('Suspect: ' + mistery[0].firstName + ' ' + mistery[0].lastName + '\nWeapon: ' + mistery[1].name + '\nRoom: ' + mistery[2])
 }
 
-var mistery_envelope = pick_mistery();
-reveal_mistery(mistery_envelope);
+var mistery_envelope = pick_mistery()
+reveal_mistery(mistery_envelope)
